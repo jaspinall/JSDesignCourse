@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <title>Cat Clicker</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+
+<body>
+
+<picture id="cat">
+  <img src="cat.jpg" alt="An adorable cat">
+</picture>
+
+<div id="counter">
+  <h2>Number of Clicks</h2>
+  <p id="number">0</p>
+</div>
+
+<script>
+
+$('#cat').click(function(e) {
+  var i = $('#number').text();
+  i++;
+  $('#number').text(i);
+});
+
+</script>
+
+</body>
+
+</html>

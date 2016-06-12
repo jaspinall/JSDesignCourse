@@ -1,0 +1,8 @@
+body {
+  display: flex;
+}
+
+#counter {
+  text-align: center;
+  padding-left: 25px;
+}
