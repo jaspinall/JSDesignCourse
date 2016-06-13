@@ -8,22 +8,50 @@
 
 <body>
 
-<picture id="cat">
-  <img src="cat.jpg" alt="An adorable cat">
-</picture>
-
-<div id="counter">
+<div id="cat1">
   <h2>Number of Clicks</h2>
-  <p id="number">0</p>
+  <p id="counter1">0</p>
 </div>
+
+<div id="cat2">
+  <h2>Number of Clicks</h2>
+  <p id="counter2">0</p>
+</div>
+
 
 <script>
 
-$('#cat').click(function(e) {
-  var i = $('#number').text();
-  i++;
-  $('#number').text(i);
-});
+var Cat = function(catNumber, catName, image) {
+  this.catNumber = catNumber;
+  this.catName = catName;
+  this.image = image;
+};
+
+var cat1 = new Cat("1", "Petey", "cat1.jpg");
+var cat2 = new Cat("2", "Jane", "cat2.jpg");
+
+Cat.prototype.render = function() {
+  var i = "#" + "cat" + this.catNumber;
+  $(i).prepend("<image src= " + "'" + this.image + "'" + "/>");
+  $(i).prepend("<h3>" + this.catName + "</h3>");
+};
+
+Cat.prototype.countClicks = function() {
+  var i = "#" + "cat" + this.catNumber;
+  var j = "#" + "counter" + this.catNumber;
+  $(i).click(function(e) {
+    var k = $(j).html();
+    k++;
+  $(j).html(k);
+  });
+};
+
+cat1.render();
+cat2.render();
+
+cat1.countClicks();
+cat2.countClicks();
+
 
 </script>
 
