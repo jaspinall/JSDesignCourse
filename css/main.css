@@ -1,0 +1,25 @@
+body {
+  float: left;
+  font: 16px Arial;
+  padding: 0;
+  margin: 0;
+}
+
+#selector {
+  height: 50px;
+  width: 100vw;
+  border-bottom: 1px solid gray;
+  padding-top: 25px;
+  padding-left: 50px;
+}
+
+#cat {
+  padding-top: 25px;
+  padding-left: 50px;
+}
+
+button {
+  width: 100px;
+  text-align: center;
+  margin-right: 25px;
+}
