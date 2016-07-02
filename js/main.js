@@ -6,41 +6,36 @@ $(function(){
         current: null,
 
         allCats: [
-            {name: "Petey",
+            {catName: "Petey",
              ID: 0, 
              clicks: 0,
-             src: "images/cat1.jpg"
+             catSrc: "images/cat1.jpg"
              },
 
-             {name: "Eliza",
+             {catName: "Eliza",
              ID: 1,
              clicks: 0,
-             src: "images/cat2.jpg"
+             catSrc: "images/cat2.jpg"
              },
 
-             {name: "Tom and Jerry",
+             {catName: "Tom and Jerry",
              ID: 2,
              clicks: 0,
-             src: "images/cat3.jpg"
+             catSrc: "images/cat3.jpg"
              },
 
-             {name: "Finnegan",
+             {catName: "Finnegan",
              ID: 3,
              clicks: 0,
-             src: "images/cat4.jpg"
+             catSrc: "images/cat4.jpg"
              },
 
-             {name: "Miles",
+             {catName: "Miles",
              ID: 4,
              clicks: 0,
-             src: "images/cat5.jpg"
+             catSrc: "images/cat5.jpg"
              }
-        ],
-
-        updateClicks: function(cat) {
-            var number = this.ID;
-            allCats[number].clicks = this.clicks;
-            }
+        ]
     };
 
 
@@ -59,6 +54,7 @@ $(function(){
             viewButtons.init();
             viewButtons.render();
             viewCat.init();
+            viewAdmin.render();
         },
 
         setCat: function(cat) {
@@ -67,8 +63,15 @@ $(function(){
 
         incrementCounter: function() {
             model.current.clicks++;
-            console.log(model.current.clicks);
             viewCat.render();
+         }, 
+
+         updateCat: function(catName, URL, clicks) {
+             model.current.catName = catName;
+             model.current.clicks = parseInt(clicks);
+             model.current.catSrc = URL;
+             octopus.setCat(model.current);
+             model.allCats[model.current.ID] = model.current;
          }
     };
 
@@ -76,13 +79,14 @@ $(function(){
     var viewButtons = {
 
         init: function() {
-        octopus.getCats().forEach(function(cat){
-            $('#selector').append("<button id=" + cat.ID + ">" + cat.name + "</button>");
-        });
-      },
+            $('.catButton').remove();
+            octopus.getCats().forEach(function(cat){
+                $('#selector').append("<button class='catButton' id=" + cat.ID + ">" + cat.catName + "</button>");
+            });
+         },
 
         render: function() {
-            $('button').click(function(){
+            $('.catButton').click(function(){
                 var buttonNumber= this.id;
                 var cat = octopus.getCats()[buttonNumber];
                 octopus.setCat(cat);
@@ -105,10 +109,40 @@ $(function(){
 
         render: function() {
             var currentCat = octopus.getCurrentCat();
-            $('.catPic').attr("src", currentCat.src);
+            $('.catPic').attr("src", currentCat.catSrc);
             $('#clicks').html("Clicks: " + currentCat.clicks);
         },
     };
+
+    var viewAdmin = {
+
+        render: function() {
+            $('#admin').click(function(){
+                var currentCat = octopus.getCurrentCat();
+                $('#catName').attr("value", currentCat.catName);
+                $('#catURL').attr("value", currentCat.catSrc);
+                $('#catClicks').attr("value", currentCat.clicks);
+                $('form').css("display", "block");
+            });
+
+            $('#cancel').click(function(e){
+                 e.preventDefault();
+                $('form').css("display", "none");
+            });
+
+            $('#submit').click(function(e){
+                e.preventDefault();
+                var newCatName = $('#catName').val();
+                var newCatURL = $('#catURL').val();
+                var newCatClicks = $('#catClicks').val();
+                octopus.updateCat(newCatName, newCatURL, newCatClicks);
+                $('form').css("display", "none");
+                viewButtons.init();
+                viewCat.render();
+                viewButtons.render();
+            });
+        },
+    }
 
     octopus.init();
 });

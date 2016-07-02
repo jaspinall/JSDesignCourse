@@ -18,8 +18,40 @@ body {
   padding-left: 50px;
 }
 
-button {
+.catButton {
   width: 100px;
   text-align: center;
   margin-right: 25px;
+}
+
+#adminMode {
+  padding-top: 25px;
+  padding-left: 50px;
+}
+
+#admin {
+  float: left;
+}
+
+form {
+  float: left;
+  margin-left: 50px;
+  display: none;
+}
+
+label {
+  width: 150px;
+  display: inline-block;
+}
+
+.catValues {
+  width: 300px;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+#cancel, #submit {
+  float: right;
+  margin-top: 15px;
+  margin-left: 10px;
 }
