@@ -2,38 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Udacity Cat Cat Clicker Premium</title>
+    <title>Udacity Cat Cat Clicker Knockout Version</title>
     <link rel="stylesheet" href="css/main.css">
+
 </head>
 <body>
 
-    <div id="selector">
-    </div>
-
     <div id="cat">
-      <div id="clicks">Clicks: </div>
-      <img class="catPic"></img>
-    </div>
-    
-    <div id="adminMode">
-        <button id="admin">Admin</button>
-        <form id="catChangeForm">
-            <label>Cat Name:</label>
-            <input class="catValues" type="text" id="catName" name="catName" value=""> <br>
-
-            <label>Photo URL:</label>
-            <input class="catValues" type="text" id="catURL" name="catURL" value=""> <br>
-
-            <label>Clicks:</label>
-            <input class="catValues" type="text" id="catClicks" name="catClicks" value=""> <br>
-
-            <button id="cancel" value="Cancel">Cancel</button>
-            <input type="submit" id="submit" value="Submit">
-
-        </form>
+      <div id="name">Name: Kitty </div>
+      <div id="clicks">Clicks: <span data-bind="text: clickCount"></span></div>
+      <img class="catPic" data-bind="click: incrementClickCounter, attr: {src: imgSrc}"></img>
     </div>
 
-
+    <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
 </body>
